@@ -153,8 +153,8 @@ book;
 // author;
 
 // console.log(title, author);
-
-const { title, author, id, publicationDate, genres, hasMovieAdaptation } = book; 
+/*
+const { title, author, id, publicationDate, genres, hasMovieAdaptation } = book;
 
 console.log(title, author, id, publicationDate, genres);
 
@@ -170,15 +170,15 @@ const [primaryGenre, ...otherGenre] = genres;
 console.log(primaryGenre, otherGenre);
 
 const newGenres = [genres, "Epic Fantasy"]
-newGenres 
+newGenres
 
-const newBook = { ...book, releseDate: "2026-10-25", pages: 200 };
-newBook;
+// const newBook = { ...book, releseDate: "2026-10-25", pages: 200 };
+// newBook;
 
 
 // Template literals
 const pages = newBook;
-const summery = `${title} , a ${pages}-pages long book was written by ${author} in year ${publicationDate.split("-")[0]} the book has ${hasMovieAdaptation ? "a movie" : "no movie"} adaptation.`; 
+const summery = `${title} , a ${pages}-pages long book was written by ${author} in year ${publicationDate.split("-")[0]} the book has ${hasMovieAdaptation ? "a movie" : "no movie"} adaptation.`;
 summery
 
 // Ternary Operator
@@ -194,9 +194,9 @@ summery
 
 // another way Arrow function
 
-const getYear=(str) => str.split("-")[0];
+const getYear = (str) => str.split("-")[0];
 console.log(getYear(publicationDate));
- 
+
 //  Short Circuiting && 
 
 console.log(true && "Satish");
@@ -206,4 +206,76 @@ console.log(hasMovieAdaptation && "This book has a movie adaptation");
 console.log(true || "Satish");
 console.log(false || "Satish")
 
-console.log(book.translations.bengali)
+// console.log(book.translations.bengali)
+
+const books = getBooks()
+
+
+let importantData = books.map(book => ({
+  title: book.title,
+  author: book.author,
+  publicationDate: book.publicationDate.split("-")[0],
+  reviews: book.reviews.goodreads.rating,
+
+}));
+importantData
+
+// array filter methot
+
+const longBook = books.filter((books) => books.pages < 500).filter((book) => book.hasMovieAdaptation);
+longBook;
+
+const fantacyBook = books.filter((book) => book.genres.includes("fantasy")).map((book) => book.title);
+fantacyBook;
+
+// The Array Reduce method
+
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+
+pagesAllBooks;
+
+// array sort method
+const arr = [3, 6, 9, 11, 4];
+const sorted = arr.sort((a, b) => b - a)
+sorted
+arr
+sortedPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedPages;
+
+// immutable array
+const newBook = {
+  id: 6,
+  title: "My book",
+  author: "perm",
+}
+
+// Adding data 
+const bookAfterAdd = [...books, newBook];
+bookAfterAdd;
+
+// Deleting data 
+const bookAfterDelete = bookAfterAdd.filter((book) => book.id !== 2);
+bookAfterDelete;
+
+// Updating data 
+const bookAfterUpdate = bookAfterAdd.map((book) => book.id === 3 ? { ...book, pages: 1000 } : book);
+bookAfterUpdate;
+ 
+*/
+
+
+// Asynchronous JavaScript Promise 
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then(resposne => resposne.json())
+//   .then(json => console.log(json));
+
+async function getTodo() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos")
+  const data = await res.json();
+  console.log(data);
+}
+const todo = getTodo();
+console.log(todo);
+console.log("Satish")
+
