@@ -104,7 +104,7 @@ function Header() {
   /*const style = { color: "#ff6b6b", fontSize: "48px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "2px", textAlign: "center", marginBottom: "20px" }*/
   return (
     <header className="header">
-      <h1>Sangita belgain waffles and pizza Company</h1>
+      <h1>pizza Company</h1>
     </header>
 
   )
