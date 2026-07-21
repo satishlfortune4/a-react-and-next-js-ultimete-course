@@ -58,16 +58,21 @@ function App() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza
-            pizzaObj={pizza}
-          />
-        ))};
-      </ul>
+      {numPizzas > 0 ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza
+              pizzaObj={pizza}
+            />
+          ))};
+        </ul>
+      ) : (<p>we are working on our menu. pleasae come back later</p>)}
 
       {/* <Pizza
         name="Onion Pizza"
@@ -111,19 +116,26 @@ function Header() {
 }
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
-  const closeHour = 23;
+  const openHour = 8;
+  const closeHour = 12;
   const isOpen = hour >= openHour && hour <= closeHour;
-  // console.log(isOpen);
+  console.log(isOpen);
   return (
     <footer className="footer">
       {isOpen ? (
-        <p>We are open!</p>
-      ) : (
-        <p>We are closed!</p>
-      )}
+        <Order closeHour={closeHour} />
+      ) : (<p>we are happy to searve our betweeb {openHour}:00 and {closeHour}:00</p>)}
     </footer>)
   // return React.createElement('footer', null, 'We are open!');
+}
+
+function Order(props) {
+  return (
+    <div className="order">
+      <p>we are open untill {props.closeHour} :00 come visit us or order online</p>
+      <button className="btn btn-primary">Order Now</button>
+    </div>
+  )
 }
 
 
