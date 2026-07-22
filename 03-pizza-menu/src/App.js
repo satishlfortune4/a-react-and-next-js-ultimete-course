@@ -65,13 +65,17 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza
-              pizzaObj={pizza}
-            />
-          ))};
-        </ul>
+        <>
+
+          <p>Authentic indian cuisine, 6 creative disesh to choose from our kitchen all orignic, All delicious  </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza
+                pizzaObj={pizza}
+              />
+            ))};
+          </ul>
+        </>
       ) : (<p>we are working on our menu. pleasae come back later</p>)}
 
       {/* <Pizza
@@ -91,15 +95,15 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
-  console.log(props);
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
   return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div className="pizza-info">
-        <h1>{props.pizzaObj.name}</h1>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h1>{pizzaObj.name}</h1>
+        <p>{pizzaObj.ingredients}</p>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   )
@@ -116,23 +120,23 @@ function Header() {
 }
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 8;
-  const closeHour = 12;
+  const openHour = 10;
+  const closeHour = 7;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (<p>we are happy to searve our betweeb {openHour}:00 and {closeHour}:00</p>)}
     </footer>)
   // return React.createElement('footer', null, 'We are open!');
 }
 
-function Order(props) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
-      <p>we are open untill {props.closeHour} :00 come visit us or order online</p>
+      <p>we are open from {openHour} untill {closeHour}:00 come visit us or order online</p>
       <button className="btn btn-primary">Order Now</button>
     </div>
   )
@@ -147,4 +151,7 @@ root.render(
 );
 
 export default App;
+
+
+
 
